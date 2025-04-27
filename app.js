@@ -27,30 +27,39 @@ app.get('/', async (req, res) => {
 })
 
 app.put('/:id', async (req, res) => {
-//atualiza o usuario conforme ID
-  await prisma.user.update({
-    where: {
-      id: req.params.id
-    },
-    data: {
-      email: req.body.email,
-      name: req.body.name,
-      age: req.body.age
-    }
-  })
-
-  res.send("Item atualizado com sucesso")
+  try {
+    await prisma.user.update({
+      where: {
+        id: req.params.id
+      },
+      data: {
+        email: req.body.email,
+        name: req.body.name,
+        age: req.body.age
+      }
+    })
+    res.send("Item atualizado com sucesso")
+  } catch (error) {
+    console.error(error)
+    res.status(500).send("Erro ao atualizar o item")
+  }
 })
+
 
 app.delete('/:id', async (req, res) => {
   //nem te conto o que que esse faz
-  await prisma.user.delete({
-    where: {
-      id: req.params.id
-    }
-  })
-
-  res.send("Item removido com sucesso")
+  try{
+    await prisma.user.delete({
+      where: {
+        id: req.params.id
+      }
+    })
+  
+    res.send("Item removido com sucesso")
+  } catch (error) {
+    console.error(error)
+    res.status(500).send("Erro ao deleter user")
+  }
 })
 
 app.listen(port)
