@@ -1,7 +1,7 @@
 import express from 'express'
 import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient
+const prisma = new PrismaClient()
 const app = express()
 const port = process.env.PORT || 4000 
 
