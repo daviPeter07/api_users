@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient
 const app = express()
-const port = 3000
+const port = process.env.PORT || 4000 
 
 app.use(express.json())
 app.post('/', async (req, res) => {
