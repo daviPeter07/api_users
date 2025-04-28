@@ -2,11 +2,11 @@ import express from 'express'
 import { PrismaClient } from '@prisma/client'
 import cors from "cors"
 
-app.use(cors())
 const prisma = new PrismaClient()
 const app = express()
 const port = process.env.PORT || 4000 
 
+app.use(cors())
 app.use(express.json())
 app.post('/', async (req, res) => {
   //cria o usuario por meio do body do thunder e lança no banco de dados e retorna uma mensagem de confirmação
