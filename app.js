@@ -49,7 +49,7 @@ app.put('/:id', async (req, res) => {
 
 
 app.delete('/:id', async (req, res) => {
-  //nem te conto o que que esse faz
+  //deletar user conforme ID
   try{
     await prisma.user.delete({
       where: {
